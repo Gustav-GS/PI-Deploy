@@ -258,3 +258,6 @@ def deletar_contas(post_id):
     db.session.commit()
     return redirect(url_for('contas'))
 
+if __name__ == '__main__':
+    app.run(debug=True)
+
