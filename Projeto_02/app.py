@@ -10,8 +10,7 @@ import datetime
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your secret key'
 project_dir = os.path.dirname(os.path.abspath(__file__))
-database_file = f"sqlite:///{os.path.join(project_dir, 'database.db')}"
-app.config['SQLALCHEMY_DATABASE_URI'] = database_file
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://rotary_db_5kx9_user:ITT3ktPqVVq1BrcROtBoI4vC1mNeZPRO@dpg-d3jfhepr0fns7387fd8g-a/rotary_db_5kx9'
 
 
 # Definindo as extensões permitidas
