@@ -42,7 +42,6 @@ export default function LoginPage() {
           <div className="auth-bullets">
             <span>Crie e edite publicações com imagens</span>
             <span>Gerencie próximas atividades e registros</span>
-            <span>Uploads seguros com Vercel Blob</span>
           </div>
         </div>
         <div>
