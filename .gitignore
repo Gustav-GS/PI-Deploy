@@ -1,0 +1,13 @@
+# Node
+node_modules/
+.next/
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.turbo/
+
+# Env
+.env.local
+.env.*.local
+
