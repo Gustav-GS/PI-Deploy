@@ -119,7 +119,7 @@ ul { list-style: none; padding: 0; }
 li { background: white; margin: 15px auto; padding: 20px; max-width: 600px; border-radius: 10px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); position: relative; }
 strong { font-size: 1.4em; color: #1E90FF; }
 small { color: #999; }
-button { background-color: #FF8C00; border: none; padding: 8px 12px; color: rgb(0, 0, 0); border-radius: 5px; cursor: pointer; margin-top: 10px; }
+button { background-color: #FF8C00; border: none; padding: 8px 12px; color: rgb(0, 0, 0); border-radius: 5px; cursor: pointer; margin-top: 0px; }
 button:hover { background-color: #e67600; }
 a { color: #1E90FF; text-decoration: none; }
 a:hover { text-decoration: underline; }
