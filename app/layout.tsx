@@ -33,7 +33,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
             )}
           </div>
 
-          <img className="titulo slide-in logo" src="/img/logo.png" alt="Logo Rotary" decoding="async" fetchpriority="high" loading="eager" />
+          <img className="titulo slide-in logo" src="/img/logo.png" alt="Logo Rotary" decoding="async" fetchPriority="high" loading="eager" />
           <Script src="/js/script.js" strategy="afterInteractive" />
 
           <div className="patrocinadores">
