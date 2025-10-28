@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -36,7 +37,7 @@ export default function LoginPage() {
     <section className="auth-hero">
       <div className="auth-grid">
         <div className="auth-panel">
-          <img src="/img/logo.png" alt="Logo" style={{width:160, height:'auto', marginBottom:16}} />
+          <img src="/img/logo.png" alt="Logo" style={{width:160, height:'auto', marginBottom:16}} decoding="async" fetchpriority="high" loading="eager" />
           <h1>Bem-vindo de volta</h1>
           <p>Acesse a área administrativa para gerenciar eventos, galeria e prestações de contas.</p>
           <div className="auth-bullets">
@@ -48,28 +49,28 @@ export default function LoginPage() {
           <div className="glass-card">
             <h2 className="auth-title">Entrar</h2>
             <p className="auth-sub">Use seu usuário e senha</p>
-            <form onSubmit={onSubmit}>
+            <form onSubmit={onSubmit} aria-busy={busy}>
               <div className="auth-field">
                 <label className="auth-label" htmlFor="user">Usuário</label>
                 <div className="input-wrap">
-                  <span className="input-icon" aria-hidden>👤</span>
-                  <input id="user" className="auth-input" value={username} onChange={e=>setUsername(e.target.value)} placeholder="Digite seu usuário" autoFocus required />
+                  <span className="input-icon" aria-hidden="true">👤</span>
+                  <input id="user" className="auth-input" name="username" autoComplete="username" value={username} onChange={e=>setUsername(e.target.value)} placeholder="Digite seu usuário" autoFocus required />
                 </div>
               </div>
           <div className="auth-field">
             <label className="auth-label" htmlFor="pass">Senha</label>
             <div className="input-wrap with-action">
-              <span className="input-icon" aria-hidden>🔒</span>
-              <input id="pass" className="auth-input" type={show ? 'text' : 'password'} value={password} onChange={e=>setPassword(e.target.value)} placeholder="••••••••" required />
-              <button type="button" className="btn-ghost input-action" onClick={()=>setShow(s=>!s)} aria-label={show ? 'Ocultar senha' : 'Mostrar senha'}>
+              <span className="input-icon" aria-hidden="true">🔒</span>
+              <input id="pass" className="auth-input" name="password" autoComplete="current-password" type={show ? 'text' : 'password'} value={password} onChange={e=>setPassword(e.target.value)} placeholder="••••••••" required />
+              <button type="button" className="btn-ghost input-action" onClick={()=>setShow(s=>!s)} aria-label={show ? 'Ocultar senha' : 'Mostrar senha'} aria-pressed={show} title={show ? 'Ocultar senha' : 'Mostrar senha'}>
                 {show ? 'Ocultar' : 'Mostrar'}
               </button>
             </div>
           </div>
-              {error && <div className="auth-error" role="alert" aria-live="polite">{error}</div>}
+              {error && <div id="login-error" className="auth-error" role="alert" aria-live="polite">{error}</div>}
               <div className="auth-actions">
                 <button type="submit" className="btn-primary" disabled={busy}>
-                  {busy ? (<span>Entrando<span className="spinner" /></span>) : 'Entrar'}
+                  {busy ? (<span role="status" aria-live="polite">Entrando<span className="spinner" /></span>) : 'Entrar'}
                 </button>
               </div>
               <p className="muted">Apenas membros autorizados podem acessar.</p>
@@ -80,3 +81,4 @@ export default function LoginPage() {
     </section>
   );
 }
+

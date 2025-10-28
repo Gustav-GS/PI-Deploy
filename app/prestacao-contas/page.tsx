@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { ensureInit, sql } from '@/lib/db';
 import { getSessionUser } from '@/lib/auth';
 import DeleteButton from '@/components/DeleteButton';
@@ -28,7 +29,7 @@ export default async function PrestacaoContasPage() {
             <p>{item.content}</p>
             <div style={{display:'grid', gridTemplateColumns:'repeat(auto-fill, minmax(220px,1fr))', gap:12}}>
               {Array.isArray(item.image_urls) && item.image_urls.map((u: string, idx: number) => (
-                <img key={idx} src={u} alt={`${item.title}-${idx+1}`} />
+                <img key={idx} src={u} alt={`${item.title}-${idx+1}`} loading="lazy" decoding="async" />
               ))}
             </div>
             {user && (

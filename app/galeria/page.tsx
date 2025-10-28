@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { ensureInit, sql } from '@/lib/db';
 import { getSessionUser } from '@/lib/auth';
 import DeleteButton from '@/components/DeleteButton';
@@ -28,7 +29,7 @@ export default async function GaleriaPage() {
             <p>{g.content}</p>
             <div style={{display:'grid', gridTemplateColumns:'repeat(auto-fill, minmax(180px,1fr))', gap:12}}>
               {Array.isArray(g.image_urls) && g.image_urls.map((u: string, idx: number) => (
-                <img key={idx} src={u} alt={`${g.title}-${idx+1}`} />
+                <img key={idx} src={u} alt={`${g.title}-${idx+1}`} loading="lazy" decoding="async" />
               ))}
             </div>
             {user && (

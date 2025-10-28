@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import './globals.css';
 import 'leaflet/dist/leaflet.css';
 import Link from 'next/link';
@@ -18,6 +19,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
         </noscript>
       </head>
       <body>
+        <a href="#conteudo-principal" className="skip-link">Ir para o conteúdo principal</a>
         <header>
           <div style={{position: 'absolute', top: 10, right: 10, display:'flex', gap:12}}>
             {user ? (
@@ -31,24 +33,24 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
             )}
           </div>
 
-          <img className="titulo slide-in logo" src="/img/logo.png" alt="Logo Rotary" />
+          <img className="titulo slide-in logo" src="/img/logo.png" alt="Logo Rotary" decoding="async" fetchpriority="high" loading="eager" />
           <Script src="/js/script.js" strategy="afterInteractive" />
 
           <div className="patrocinadores">
             <Link href="/">
-              <img src="/img/empresaamiga.png" alt="Patrocinador 1" />
+              <img src="/img/empresaamiga.png" alt="Patrocinador 1" loading="lazy" decoding="async" />
             </Link>
-            <a href="https://loja.cafefazendapessegueiro.com.br" target="_blank" rel="noreferrer">
-              <img src="/img/fazendacafe.png" alt="Patrocinador 2" />
+            <a href="https://loja.cafefazendapessegueiro.com.br" target="_blank" rel="noopener noreferrer">
+              <img src="/img/fazendacafe.png" alt="Patrocinador 2" loading="lazy" decoding="async" />
             </a>
-            <img src="/img/grupomonjojpeg.png" alt="Patrocinador 3" />
-            <img src="/img/wordclean.png" alt="Patrocinador 4" />
-            <a href="https://pt-br.facebook.com/BARIRITECCAR/" target="_blank" rel="noreferrer">
-              <img src="/img/teccar.png" alt="Patrocinador 5" />
+            <img src="/img/grupomonjojpeg.png" alt="Patrocinador 3" loading="lazy" decoding="async" />
+            <img src="/img/wordclean.png" alt="Patrocinador 4" loading="lazy" decoding="async" />
+            <a href="https://pt-br.facebook.com/BARIRITECCAR/" target="_blank" rel="noopener noreferrer">
+              <img src="/img/teccar.png" alt="Patrocinador 5" loading="lazy" decoding="async" />
             </a>
           </div>
 
-          <nav>
+          <nav aria-label="Navegação principal">
             <Link href="/">Home</Link>
             <Link href="/quem-somos">Quem Somos</Link>
             <Link href="/eventos">Eventos</Link>
@@ -60,7 +62,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
           </nav>
         </header>
 
-        <main>
+        <main id="conteudo-principal" tabIndex={-1}>
           {children}
         </main>
 

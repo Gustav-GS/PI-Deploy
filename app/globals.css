@@ -6,6 +6,27 @@ header a:hover { text-decoration: underline; }
 button { cursor: pointer; }
 img { max-width: 100%; height: auto; }
 
+/* Focus styles */
+:where(a, button, input, textarea, select, summary):focus-visible {
+  outline: 3px solid #2276ca;
+  outline-offset: 2px;
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  padding: 10px 12px;
+  background: #0f172a;
+  color: #fff !important;
+  border-radius: 8px;
+  transform: translateY(-200%);
+  transition: transform .2s ease;
+  z-index: 9999;
+}
+.skip-link:focus { transform: none; }
+
 /* Auth pages */
 .auth-hero { position:relative; min-height:80vh; padding:48px 16px; background:
   radial-gradient(1000px 600px at -10% 0%, #e7f1fb 20%, transparent 60%),
@@ -38,3 +59,10 @@ img { max-width: 100%; height: auto; }
 .muted { color:#64748b; font-size:12px; text-align:center; margin-top:12px; }
 .spinner { width:16px; height:16px; border-radius:50%; border:2px solid #fff; border-top-color: transparent; display:inline-block; animation: spin .8s linear infinite; margin-left:8px; }
 @keyframes spin { to { transform: rotate(360deg); } }
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+/* (Removidos estilos do carrossel acessível a pedido do usuário) */

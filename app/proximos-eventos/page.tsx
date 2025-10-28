@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { ensureInit, sql } from '@/lib/db';
 import { getSessionUser } from '@/lib/auth';
 import DeleteButton from '@/components/DeleteButton';
@@ -27,7 +28,7 @@ export default async function ProximosEventosPage() {
             <strong>{p.title}</strong><br/>
             <small>{new Date(p.created_at).toLocaleString('pt-BR')}</small>
             <p>{p.content}</p>
-            {p.image_url && <img src={p.image_url} alt={p.title} />}
+            {p.image_url && <img src={p.image_url} alt={p.title} loading="lazy" decoding="async" />}
             {user && (
               <div style={{marginTop: 8}}>
                 <DeleteButton url={`/api/posts/${p.id}`} confirmMessage="Tem certeza que deseja apagar este evento?" />
