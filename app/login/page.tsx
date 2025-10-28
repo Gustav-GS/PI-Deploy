@@ -37,7 +37,7 @@ export default function LoginPage() {
     <section className="auth-hero">
       <div className="auth-grid">
         <div className="auth-panel">
-          <img src="/img/logo.png" alt="Logo" style={{width:160, height:'auto', marginBottom:16}} decoding="async" fetchpriority="high" loading="eager" />
+          <img src="/img/logo.png" alt="Logo" style={{width:160, height:'auto', marginBottom:16}} decoding="async" fetchPriority="high" loading="eager" />
           <h1>Bem-vindo de volta</h1>
           <p>Acesse a área administrativa para gerenciar eventos, galeria e prestações de contas.</p>
           <div className="auth-bullets">
