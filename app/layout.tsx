@@ -33,29 +33,9 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
             <Link href="/contato">Contato</Link>
             <Link href="/redes-sociais">Redes Sociais</Link>
             <Link href="/galeria">Galeria</Link>
-            {!user && (
-              <Link href="/login" className="nav-login">Entrar</Link>
-            )}
+            {user ? <LogoutButton /> : <Link href="/login" className="nav-login">Entrar</Link>}
           </nav>
         </header>
-
-        {user && (
-          <div className="admin-bar" role="navigation" aria-label="Área administrativa">
-            <span className="admin-bar-label">Admin</span>
-            <div className="admin-bar-actions">
-              <Link href="/admin/novo-evento" className="admin-bar-link">
-                + Criar Evento
-              </Link>
-              <Link href="/admin/novo-galeria" className="admin-bar-link">
-                + Nova Postagem
-              </Link>
-              <Link href="/admin/novo-contas" className="admin-bar-link">
-                + Prestação de Contas
-              </Link>
-            </div>
-            <LogoutButton />
-          </div>
-        )}
 
         <main id="conteudo-principal" tabIndex={-1}>
           {children}

@@ -20,7 +20,7 @@ export default function LogoutButton() {
           setLoading(false);
         }
       }}
-      style={{background:'transparent', color:'#64748b', border:'1px solid #1e293b', padding:'3px 10px', borderRadius:5, fontSize:12, fontWeight:500, marginTop:0, boxShadow:'none'}}
+      style={{background:'rgba(255,255,255,0.15)', color:'rgba(255,255,255,0.92)', border:'1px solid rgba(255,255,255,0.35)', padding:'6px 13px', borderRadius:8, fontSize:15, fontWeight:500, marginTop:0, boxShadow:'none', cursor:'pointer'}}
     >
       {loading ? <span role="status" aria-live="polite">Saindo…</span> : 'Sair'}
     </button>
