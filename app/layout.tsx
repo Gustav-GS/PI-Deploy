@@ -13,26 +13,14 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
     <html lang="pt-BR">
       <head>
         <link rel="stylesheet" href="/css/estilos.css" />
-        {/* Evita tela branca caso JS não carregue */}
         <noscript>
           <style>{`body{opacity:1 !important}`}</style>
         </noscript>
       </head>
       <body>
         <a href="#conteudo-principal" className="skip-link">Ir para o conteúdo principal</a>
-        <header>
-          <div style={{position: 'absolute', top: 10, right: 10, display:'flex', gap:12}}>
-            {user ? (
-              <>
-                <Link href="/admin/novo-evento" style={{color:'#fff'}}>Criar Evento</Link>
-                <Link href="/admin/novo-galeria" style={{color:'#fff'}}>Nova Postagem</Link>
-                <LogoutButton />
-              </>
-            ) : (
-              <Link href="/login" style={{color:'#fff'}}>Login</Link>
-            )}
-          </div>
 
+        <header>
           <img className="titulo slide-in logo" src="/img/logo.png" alt="Logo Rotary" decoding="async" fetchPriority="high" loading="eager" />
           <Script src="/js/script.js" strategy="afterInteractive" />
 
@@ -45,8 +33,29 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
             <Link href="/contato">Contato</Link>
             <Link href="/redes-sociais">Redes Sociais</Link>
             <Link href="/galeria">Galeria</Link>
+            {!user && (
+              <Link href="/login" className="nav-login">Entrar</Link>
+            )}
           </nav>
         </header>
+
+        {user && (
+          <div className="admin-bar" role="navigation" aria-label="Área administrativa">
+            <span className="admin-bar-label">Admin</span>
+            <div className="admin-bar-actions">
+              <Link href="/admin/novo-evento" className="admin-bar-link">
+                + Criar Evento
+              </Link>
+              <Link href="/admin/novo-galeria" className="admin-bar-link">
+                + Nova Postagem
+              </Link>
+              <Link href="/admin/novo-contas" className="admin-bar-link">
+                + Prestação de Contas
+              </Link>
+            </div>
+            <LogoutButton />
+          </div>
+        )}
 
         <main id="conteudo-principal" tabIndex={-1}>
           {children}
