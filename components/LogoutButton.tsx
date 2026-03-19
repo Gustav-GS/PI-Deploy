@@ -14,9 +14,8 @@ export default function LogoutButton() {
         try {
           setLoading(true);
           await fetch('/api/logout', { method: 'POST' });
-          router.refresh();
-          router.push('/');
-        } finally {
+          window.location.href = '/';
+        } catch {
           setLoading(false);
         }
       }}
