@@ -76,7 +76,6 @@ nav a:hover {
 main {
   padding: 2rem;
   flex: 1;
-  padding-right: 120px;
 }
 
 /* ============================================================
@@ -144,31 +143,6 @@ footer {
   transform: translateX(0);
 }
 
-/* ============================================================
-   PATROCINADORES (sidebar)
-   ============================================================ */
-.patrocinadores {
-  position: fixed;
-  top: 200px;
-  right: 18px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  z-index: 999;
-}
-
-.patrocinadores img {
-  width: 140px;
-  height: auto;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.patrocinadores img:hover {
-  transform: scale(1.06) translateY(-2px);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
-}
 
 /* ============================================================
    DONATION BUTTON
