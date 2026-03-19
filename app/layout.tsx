@@ -67,7 +67,10 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
         </main>
 
         <footer>
-          Rotary Club Bariri 16 de Junho - Todos os direitos reservados
+          <div className="footer-content">
+            <span>Rotary Club Bariri 16 de Junho — Todos os direitos reservados</span>
+            <Link href="/api-docs" className="footer-api-link">Documentação da API</Link>
+          </div>
         </footer>
       </body>
     </html>

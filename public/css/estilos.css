@@ -1,10 +1,13 @@
+/* ============================================================
+   BASE
+   ============================================================ */
 body {
   height: 100%;
   padding: 0;
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #f4f8fb;
-  color: #333;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background-color: #f0f4f9;
+  color: #1e293b;
   opacity: 0;
   transition: opacity 1.2s ease-in-out;
   display: flex;
@@ -21,106 +24,337 @@ body.fade-in {
   opacity: 1;
 }
 
+/* ============================================================
+   HEADER
+   ============================================================ */
 header {
-  background-color: #2276ca;
+  background: linear-gradient(135deg, #1558a8 0%, #2276ca 60%, #1a6ab8 100%);
   color: white;
-  padding: 1rem 2rem;
+  padding: 0.75rem 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  box-shadow: 0 4px 20px rgba(21, 88, 168, 0.35);
+  position: relative;
+  z-index: 100;
 }
+
 header img {
   height: 50px;
 }
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  align-items: center;
+}
+
 nav a {
-  color: white;
+  color: rgba(255, 255, 255, 0.92);
   text-decoration: none;
-  margin-left: 1rem;
-  font-size: 25px;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 6px 13px;
+  border-radius: 8px;
+  transition: background 0.18s ease, color 0.18s ease;
+  letter-spacing: 0.01em;
 }
+
 nav a:hover {
-  text-decoration: underline;
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+  text-decoration: none;
 }
+
+/* ============================================================
+   MAIN
+   ============================================================ */
 main {
   padding: 2rem;
   flex: 1;
   padding-right: 120px;
 }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
 footer {
-  background-color: #2276ca;
-  color: white;
-  text-align: center;
-  padding: 15px;
+  background: linear-gradient(135deg, #1558a8 0%, #2276ca 100%);
+  color: rgba(255, 255, 255, 0.9);
+  padding: 18px 32px;
   position: relative;
   bottom: 0;
   width: 100%;
   margin-top: auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
 }
 
+.footer-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-size: 14px;
+}
+
+.footer-api-link {
+  color: rgba(255, 255, 255, 0.75) !important;
+  font-size: 13px;
+  padding: 5px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+  text-decoration: none !important;
+}
+
+.footer-api-link:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff !important;
+  border-color: rgba(255, 255, 255, 0.6);
+  text-decoration: none !important;
+}
+
+/* ============================================================
+   LOGO & ANIMATIONS
+   ============================================================ */
 .logo {
-  width: 300px;
+  width: 280px;
   height: auto;
   background-color: transparent !important;
-  margin-left:10%
+  margin-left: 6%;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.2));
 }
 
 .titulo { text-align: right; }
 
-.slide-in { opacity: 0; transform: translateX(-100px); transition: transform 0.8s ease, opacity 0.8s ease; }
-.slide-in.active { opacity: 1; transform: translateX(0); }
+.slide-in {
+  opacity: 0;
+  transform: translateX(-100px);
+  transition: transform 0.8s ease, opacity 0.8s ease;
+}
+.slide-in.active {
+  opacity: 1;
+  transform: translateX(0);
+}
 
+/* ============================================================
+   PATROCINADORES (sidebar)
+   ============================================================ */
 .patrocinadores {
   position: fixed;
   top: 200px;
-  right: 50px;
+  right: 18px;
   display: flex;
   flex-direction: column;
   gap: 10px;
   z-index: 999;
 }
-.patrocinadores img { width: 150px; height: auto; transition: transform 0.3s ease; }
-.patrocinadores img:hover { transform: scale(1.1); }
 
-.button_doacao {
-  background-color: rgb(240, 173, 50);
-  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-size: 120%;
-  border-radius: 8px !important;
-  cursor: pointer;
-  color:rgb(0, 0, 0) !important;
-  border: 2px solid black;
+.patrocinadores img {
+  width: 140px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.carousel { width: 100%; max-width: 1200px; aspect-ratio: 457 / 157; overflow: hidden; border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.2); }
-.carousel-images { display: flex; animation: slide 12s infinite; width: 300%; }
-.carousel-images img { width: 100%; height: 100%; object-fit: contain; }
+.patrocinadores img:hover {
+  transform: scale(1.06) translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+}
+
+/* ============================================================
+   DONATION BUTTON
+   ============================================================ */
+.button_doacao {
+  display: inline-block;
+  background: linear-gradient(135deg, #f0ad32 0%, #e8960a 100%);
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-radius: 10px !important;
+  cursor: pointer;
+  color: #1a0a00 !important;
+  border: none;
+  padding: 12px 28px;
+  box-shadow: 0 4px 14px rgba(240, 173, 50, 0.4);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+  text-decoration: none !important;
+}
+
+.button_doacao:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(240, 173, 50, 0.5);
+  filter: brightness(1.06);
+  text-decoration: none !important;
+}
+
+/* ============================================================
+   CAROUSEL
+   ============================================================ */
+.carousel {
+  width: 100%;
+  max-width: 1100px;
+  aspect-ratio: 457 / 157;
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+}
+
+.carousel-images {
+  display: flex;
+  animation: slide 12s infinite;
+  width: 300%;
+}
+
+.carousel-images img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
 
 @keyframes slide {
-  0% { transform: translateX(0%); }
+  0%   { transform: translateX(0%); }
   100% { transform: translateX(-66.66%); }
 }
 
-.fonte_padrao { margin-right: 5%; margin-left:1%; max-width: 1200px; padding: 0 16px; font-size: 20px; font-family: Arial, sans-serif; padding: 20px; }
-h2 { text-align: center; color: #333; }
-ul { list-style: none; padding: 0; }
-li { background: white; margin: 15px auto; padding: 20px; max-width: 600px; border-radius: 10px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); position: relative; }
-strong { font-size: 1.4em; color: #1E90FF; }
-small { color: #999; }
-button { background-color: #FF8C00; border: none; padding: 8px 12px; color: rgb(0, 0, 0); border-radius: 5px; cursor: pointer; margin-top: 10px; }
-button:hover { background-color: #e67600; }
-a { color: #1E90FF; text-decoration: none; }
-a:hover { text-decoration: underline; }
-.imagem-evento { width: 100%; max-height: 300px; object-fit: cover; border-radius: 8px; margin-top: 10px; }
+/* ============================================================
+   CONTENT SECTIONS
+   ============================================================ */
+.fonte_padrao {
+  margin-right: 5%;
+  margin-left: 1%;
+  max-width: 1200px;
+  padding: 20px 16px;
+  font-size: 18px;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  line-height: 1.65;
+}
 
-/* estilo similar ao padrão, com possível fundo diferente */
-.fonte_eventos { margin-right: 5%; margin-left:1%; max-width: 1200px; padding: 20px 16px; font-size: 20px; font-family: Arial, sans-serif; }
-h2 { text-align: center; color: #333; }
-ul { list-style: none; padding: 0; }
-li { background: white; margin: 15px auto; padding: 20px; max-width: 600px; border-radius: 10px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1); position: relative; }
-strong { font-size: 1.4em; color: #1E90FF; }
-small { color: #999; }
-button { background-color: #FF8C00; border: none; padding: 8px 12px; color: rgb(0, 0, 0); border-radius: 5px; cursor: pointer; margin-top: 0px; }
-button:hover { background-color: #e67600; }
-a { color: #1E90FF; text-decoration: none; }
-a:hover { text-decoration: underline; }
-.imagem-evento { width: 100%; max-height: 300px; object-fit: cover; border-radius: 8px; margin-top: 10px; }
+.fonte_eventos {
+  margin-right: 5%;
+  margin-left: 1%;
+  max-width: 1200px;
+  padding: 20px 16px;
+  font-size: 18px;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  line-height: 1.65;
+}
+
+/* ============================================================
+   TYPOGRAPHY
+   ============================================================ */
+h2 {
+  text-align: center;
+  color: #0f2d5e;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  position: relative;
+  padding-bottom: 12px;
+}
+
+h2::after {
+  content: '';
+  display: block;
+  width: 50px;
+  height: 3px;
+  background: #2276ca;
+  border-radius: 2px;
+  margin: 10px auto 0;
+}
+
+strong {
+  font-size: 1.2em;
+  color: #1558a8;
+}
+
+small {
+  color: #64748b;
+  font-size: 0.85em;
+}
+
+/* ============================================================
+   LISTS / CARDS
+   ============================================================ */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  background: #fff;
+  margin: 14px auto;
+  padding: 20px 22px;
+  max-width: 680px;
+  border-radius: 14px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.07), 0 1px 3px rgba(0,0,0,0.04);
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border-left: 4px solid #2276ca;
+}
+
+li:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(34, 118, 202, 0.14), 0 2px 6px rgba(0,0,0,0.06);
+}
+
+/* ============================================================
+   LINKS
+   ============================================================ */
+a {
+  color: #1d6fc4;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+a:hover {
+  color: #1047a0;
+  text-decoration: underline;
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+button {
+  background: linear-gradient(135deg, #ff9400 0%, #e07a00 100%);
+  border: none;
+  padding: 9px 16px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 10px;
+  box-shadow: 0 2px 8px rgba(255, 140, 0, 0.3);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(255, 140, 0, 0.4);
+  filter: brightness(1.08);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+/* ============================================================
+   EVENT / GALLERY IMAGES
+   ============================================================ */
+.imagem-evento {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-top: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
