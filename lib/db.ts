@@ -25,6 +25,7 @@ export function ensureInit() {
           image_url TEXT
         )
       `;
+      await sql`ALTER TABLE posts ADD COLUMN IF NOT EXISTS event_date TIMESTAMPTZ`;
 
       // galeria with multiple image urls
       await sql`

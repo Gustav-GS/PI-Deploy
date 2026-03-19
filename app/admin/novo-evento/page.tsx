@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 export default function NovoEventoPage() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const [eventDate, setEventDate] = useState('');
   const [file, setFile] = useState<File | null>(null);
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
@@ -27,7 +28,7 @@ export default function NovoEventoPage() {
       const res = await fetch('/api/posts', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ title, content, imageUrl })
+        body: JSON.stringify({ title, content, imageUrl, eventDate: eventDate || undefined })
       });
       if (!res.ok) throw new Error('Erro ao criar');
       router.push('/proximos-eventos');
@@ -45,6 +46,7 @@ export default function NovoEventoPage() {
       <form onSubmit={handleSubmit} style={{display:'grid', gap:12, maxWidth:520}}>
         <label>Título<input value={title} onChange={e=>setTitle(e.target.value)} required /></label>
         <label>Descrição<textarea value={content} onChange={e=>setContent(e.target.value)} required rows={4} /></label>
+        <label>Data do Evento<input type="datetime-local" value={eventDate} onChange={e=>setEventDate(e.target.value)} /></label>
         <label>Imagem<input type="file" accept="image/*" onChange={e=>setFile(e.target.files?.[0] || null)} /></label>
         {error && <p style={{color:'crimson'}}>{error}</p>}
         <button type="submit" disabled={busy}>{busy ? 'Enviando...' : 'Criar'}</button>

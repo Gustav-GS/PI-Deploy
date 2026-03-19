@@ -12,12 +12,14 @@ export async function POST(req: Request) {
   await ensureInit();
   if (!getSessionUser()) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   const body = await req.json();
-  const { title, content, imageUrl } = body;
+  const { title, content, imageUrl, eventDate } = body;
   if (!title || !content) {
     return NextResponse.json({ error: 'Missing title or content' }, { status: 400 });
   }
   const { rows } = await sql<{ id: number }>`
-    INSERT INTO posts (title, content, image_url) VALUES (${title}, ${content}, ${imageUrl || null}) RETURNING id
+    INSERT INTO posts (title, content, image_url, event_date)
+    VALUES (${title}, ${content}, ${imageUrl || null}, ${eventDate || null})
+    RETURNING id
   `;
   return NextResponse.json({ id: rows[0].id });
 }
