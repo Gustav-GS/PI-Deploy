@@ -5,12 +5,12 @@ import DeleteButton from '@/components/DeleteButton';
 import Link from 'next/link';
 
 export default async function ProximosEventosPage() {
-  let posts: { id: number; created_at: string; title: string; content: string; image_url: string | null }[] = [];
+  let posts: { id: number; created_at: string; event_date: string | null; title: string; content: string; image_url: string | null }[] = [];
   let loadError: string | null = null;
   try {
     await ensureInit();
-    const { rows } = await sql<{ id: number; created_at: string; title: string; content: string; image_url: string | null }>`
-      SELECT id, created_at, title, content, image_url FROM posts ORDER BY created_at DESC
+    const { rows } = await sql<{ id: number; created_at: string; event_date: string | null; title: string; content: string; image_url: string | null }>`
+      SELECT id, created_at, event_date, title, content, image_url FROM posts ORDER BY created_at DESC
     `;
     posts = rows as any;
   } catch (e: any) {
@@ -26,7 +26,9 @@ export default async function ProximosEventosPage() {
         {posts.map(p => (
           <li key={p.id} style={{border:'1px solid #eee', padding:16, borderRadius:8}}>
             <strong>{p.title}</strong><br/>
-            <small>{new Date(p.created_at).toLocaleString('pt-BR')}</small>
+            {p.event_date && (
+              <small>📅 {new Date(p.event_date).toLocaleString('pt-BR', { dateStyle: 'long', timeStyle: 'short' })}</small>
+            )}
             <p>{p.content}</p>
             {p.image_url && <img src={p.image_url} alt={p.title} loading="lazy" decoding="async" />}
             {user && (

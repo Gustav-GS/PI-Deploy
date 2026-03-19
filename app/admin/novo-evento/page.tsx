@@ -28,7 +28,7 @@ export default function NovoEventoPage() {
       const res = await fetch('/api/posts', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ title, content, imageUrl, eventDate: eventDate || undefined })
+        body: JSON.stringify({ title, content, imageUrl, eventDate: eventDate ? new Date(eventDate).toISOString() : undefined })
       });
       if (!res.ok) throw new Error('Erro ao criar');
       router.push('/proximos-eventos');
