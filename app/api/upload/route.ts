@@ -12,8 +12,14 @@ export async function POST(req: Request) {
   if (!file || !(file instanceof File)) {
     return NextResponse.json({ error: 'Missing file' }, { status: 400 });
   }
-  // Save publicly accessible file under uploads/
-  const pathname = `uploads/${Date.now()}-${file.name}`;
-  const blob = await put(pathname, file, { access: 'public' });
-  return NextResponse.json({ url: blob.url });
+  try {
+    // Save publicly accessible file under uploads/
+    const pathname = `uploads/${Date.now()}-${file.name}`;
+    const blob = await put(pathname, file, { access: 'public' });
+    return NextResponse.json({ url: blob.url });
+  } catch (err) {
+    const message = err instanceof Error ? err.message : String(err);
+    console.error('[upload] error:', message);
+    return NextResponse.json({ error: message }, { status: 500 });
+  }
 }
